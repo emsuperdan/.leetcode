@@ -34,19 +34,16 @@ class InfoCenter implements Subject{
 
     @Override
     public void registerObserver(Observer observer) {
-        // TODO Auto-generated method stub
         observerList.add(observer);
     }
 
     @Override
     public void unregisterObserver(Observer observer) {
-        // TODO Auto-generated method stub
         observerList.remove(observer);
     }
 
     @Override
     public void notifyObservers(String msg) {
-        // TODO Auto-generated method stub
         for(Observer observer : observerList){
             observer.updateMsg(msg);
         }
@@ -70,7 +67,6 @@ class Observer1 implements Observer{
 
     @Override
     public void updateMsg(String msg) {
-        // TODO Auto-generated method stub
         System.out.println("obsever1:----"+msg);
     }
     
@@ -80,7 +76,6 @@ class Observer2 implements Observer{
 
     @Override
     public void updateMsg(String msg) {
-        // TODO Auto-generated method stub
         System.out.println("obsever2:----"+msg);
     }
     
