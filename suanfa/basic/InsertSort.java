@@ -18,7 +18,7 @@ public class InsertSort {
             int temp = nums[i];
             int j;
             for(j= i-1; j>=0;j--){
-                if(nums[j]<temp){
+                if(nums[j]>temp){
                     nums[j+1] = nums[j];
                 }else{
                     break;
@@ -28,6 +28,6 @@ public class InsertSort {
             nums[j+1] = temp;
         }
 
-        System.out.println(Arrays.toString(nums));
+        // System.out.println(Arrays.toString(nums));
     }
 }

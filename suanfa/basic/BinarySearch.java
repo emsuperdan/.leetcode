@@ -32,23 +32,117 @@ public class BinarySearch {
         System.out.println(getResult2(nums, 9));
     }
 
-    //普通二分法
+        //普通二分法
+        private static int getResult(int[] nums, int key){
+            int left = 0;
+            int right = nums.length - 1;
+    
+            //此时 区间取值是[left,right] 左右都闭区间
+            while (left <= right) {
+            int mid = left + ((right - left) >> 1);
+                if (nums[mid] > key) {
+                    right = mid - 1;
+                } else if(nums[mid] < key) {
+                    left = mid + 1;
+                } else{
+                    return mid;
+                }
+            }
+    
+            return -1;
+        }
+
+    //找有序数组中==key 最左侧的位置
     private static int getResult2(int[] nums, int key){
         int left = 0;
         int right = nums.length - 1;
-
         //此时 区间取值是[left,right] 左右都闭区间
         while (left <= right) {
-            int mid = (left + right) >> 1;
-            if (nums[mid] == key) {
-                return mid;
-            } else if (nums[mid] > key) {
+            int mid = left + ((right - left) >> 1);
+            if (nums[mid] > key) {
                 right = mid - 1;
-            } else {
+            } else if(nums[mid] < key){
                 left = mid + 1;
+            } else{
+                //如果循环到最左或者相等数左边位置不等于key
+                if (mid == 0 || nums[mid-1] != key) {
+                    return mid;
+                } else {
+                    right = mid - 1;
+                }
             }
         }
-
         return -1;
     }
+    //找有序数组中==key 最右侧的位置
+    private static int getResult3(int[] nums, int key){
+        int left = 0;
+        int right = nums.length - 1;
+        //此时 区间取值是[left,right] 左右都闭区间
+        while (left <= right) {
+            int mid = left + ((right - left) >> 1);
+            if (nums[mid] > key) {
+                right = mid - 1;
+            } else if(nums[mid] < key){
+                left = mid + 1;
+            } else{
+                //如果循环到最右或者相等数右边位置不等于key
+                if (mid == nums.length-1 || nums[mid+1] != key) {
+                    return mid;
+                } else {
+                    right = mid + 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+
+        //找有序数组中>=key 最左侧的位置
+        private static int getResult4(int[] nums, int key){
+            int left = 0;
+            int right = nums.length - 1;
+            //此时 区间取值是[left,right] 左右都闭区间
+            while (left <= right) {
+                int mid = left + ((right - left) >> 1);
+                if (nums[mid] > key) {
+                    right = mid - 1;
+                } else if(nums[mid] < key){
+                    left = mid + 1;
+                } else{
+                    //如果循环到最左或者相等数左边位置不等于key
+                    if (mid == 0 || nums[mid-1] < key) {
+                        return mid;
+                    } else {
+                        right = mid - 1;
+                    }
+                }
+            }
+            return -1;
+        }
+
+
+        //找有序数组中<=key 最右侧的位置
+        private static int getResult5(int[] nums, int key){
+            int left = 0;
+            int right = nums.length - 1;
+            //此时 区间取值是[left,right] 左右都闭区间
+            while (left <= right) {
+                int mid = left + ((right - left) >> 1);
+                if (nums[mid] > key) {
+                    right = mid - 1;
+                } else if(nums[mid] < key){
+                    left = mid + 1;
+                } else{
+                    //如果循环到最左或者相等数左边位置不等于key
+                    if (mid == nums.length-1 || nums[mid+1] > key) {
+                        return mid;
+                    } else {
+                        right = mid + 1;
+                    }
+                }
+            }
+            return -1;
+        }
+
 }
